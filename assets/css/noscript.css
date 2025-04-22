@@ -1,0 +1,22 @@
+body.preload #bg-before {
+  background-color: transparent;
+}
+
+body.preload #header {
+  filter: none;
+}
+
+body.preload #header > * {
+  opacity: 1;
+}
+
+body.preload #header .content .inner {
+  max-height: none;
+  padding: 3rem 2rem;
+  opacity: 1;
+}
+
+#main article {
+  opacity: 1;
+  margin: 4rem 0 0 0;
+}
