@@ -18,8 +18,12 @@
           'class="link depth-' +
           indent +
           '"' +
-          (typeof target !== "undefined" && target != "" ? ' target="' + target + '"' : "") +
-          (typeof href !== "undefined" && href != "" ? ' href="' + href + '"' : "") +
+          (typeof target !== "undefined" && target != ""
+            ? ' target="' + target + '"'
+            : "") +
+          (typeof href !== "undefined" && href != ""
+            ? ' href="' + href + '"'
+            : "") +
           ">" +
           '<span class="indent-' +
           indent +
@@ -177,7 +181,8 @@
             break;
 
           case "right":
-            result = diffY < boundary && diffY > -1 * boundary && diffX < -1 * delta;
+            result =
+              diffY < boundary && diffY > -1 * boundary && diffX < -1 * delta;
             break;
 
           case "top":
@@ -185,7 +190,8 @@
             break;
 
           case "bottom":
-            result = diffX < boundary && diffX > -1 * boundary && diffY < -1 * delta;
+            result =
+              diffX < boundary && diffX > -1 * boundary && diffY < -1 * delta;
             break;
 
           default:
@@ -202,7 +208,10 @@
       }
 
       // Prevent vertical scrolling past the top or bottom.
-      if (($this.scrollTop() < 0 && diffY < 0) || (ts > th - 2 && ts < th + 2 && diffY > 0)) {
+      if (
+        ($this.scrollTop() < 0 && diffY < 0) ||
+        (ts > th - 2 && ts < th + 2 && diffY > 0)
+      ) {
         event.preventDefault();
         event.stopPropagation();
       }
@@ -253,7 +262,8 @@
    */
   $.fn.placeholder = function () {
     // Browser natively supports placeholders? Bail.
-    if (typeof document.createElement("input").placeholder != "undefined") return $(this);
+    if (typeof document.createElement("input").placeholder != "undefined")
+      return $(this);
 
     // No elements?
     if (this.length == 0) return $this;
@@ -282,14 +292,16 @@
 
         if (i.attr("name").match(/-polyfill-field$/)) return;
 
-        if (i.val() == "") i.addClass("polyfill-placeholder").val(i.attr("placeholder"));
+        if (i.val() == "")
+          i.addClass("polyfill-placeholder").val(i.attr("placeholder"));
       })
       .on("focus", function () {
         var i = $(this);
 
         if (i.attr("name").match(/-polyfill-field$/)) return;
 
-        if (i.val() == i.attr("placeholder")) i.removeClass("polyfill-placeholder").val("");
+        if (i.val() == i.attr("placeholder"))
+          i.removeClass("polyfill-placeholder").val("");
       });
 
     // Password.
@@ -306,9 +318,12 @@
 
       if (i.attr("id") != "") x.attr("id", i.attr("id") + "-polyfill-field");
 
-      if (i.attr("name") != "") x.attr("name", i.attr("name") + "-polyfill-field");
+      if (i.attr("name") != "")
+        x.attr("name", i.attr("name") + "-polyfill-field");
 
-      x.addClass("polyfill-placeholder").val(x.attr("placeholder")).insertAfter(i);
+      x.addClass("polyfill-placeholder")
+        .val(x.attr("placeholder"))
+        .insertAfter(i);
 
       if (i.val() == "") i.hide();
       else x.hide();
@@ -316,7 +331,9 @@
       i.on("blur", function (event) {
         event.preventDefault();
 
-        var x = i.parent().find("input[name=" + i.attr("name") + "-polyfill-field]");
+        var x = i
+          .parent()
+          .find("input[name=" + i.attr("name") + "-polyfill-field]");
 
         if (i.val() == "") {
           i.hide();
@@ -329,7 +346,9 @@
 
         var i = x
           .parent()
-          .find("input[name=" + x.attr("name").replace("-polyfill-field", "") + "]");
+          .find(
+            "input[name=" + x.attr("name").replace("-polyfill-field", "") + "]",
+          );
 
         x.hide();
 
@@ -343,16 +362,18 @@
     // Events.
     $this
       .on("submit", function () {
-        $this.find("input[type=text],input[type=password],textarea").each(function (event) {
-          var i = $(this);
+        $this
+          .find("input[type=text],input[type=password],textarea")
+          .each(function (event) {
+            var i = $(this);
 
-          if (i.attr("name").match(/-polyfill-field$/)) i.attr("name", "");
+            if (i.attr("name").match(/-polyfill-field$/)) i.attr("name", "");
 
-          if (i.val() == i.attr("placeholder")) {
-            i.removeClass("polyfill-placeholder");
-            i.val("");
-          }
-        });
+            if (i.val() == i.attr("placeholder")) {
+              i.removeClass("polyfill-placeholder");
+              i.val("");
+            }
+          });
       })
       .on("reset", function (event) {
         event.preventDefault();
@@ -373,7 +394,9 @@
             case "password":
               i.val(i.attr("defaultValue"));
 
-              x = i.parent().find("input[name=" + i.attr("name") + "-polyfill-field]");
+              x = i
+                .parent()
+                .find("input[name=" + i.attr("name") + "-polyfill-field]");
 
               if (i.val() == "") {
                 i.hide();

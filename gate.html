@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Vita Nova</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+      <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+  </head>
+
+  <body class="is-preload">
+    <div id="wrapper">
+      <section>
+        <form id="gate-form">
+          <div class="fields">
+            <div class="field half">
+              <label for="access-name">Name</label>
+              <input
+                type="text"
+                id="access-name"
+                value=""
+                placeholder="Enter your name"
+              />
+            </div>
+          </div>
+          <ul class="actions">
+            <li>
+              <input type="submit" value="Sumbit" class="primary" />
+            </li>
+            <button type="submit">Request Access</button>
+          </ul>
+        </form>
+      </section>
+
+      <div id="toast" class="hidden"></div>
+      <div id="main">
+        <article id="modal">
+          <section>
+            <p id="output-message"></p>
+          </section>
+        </article>
+      </div>
+    </div>
+    <div id="bg"></div>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+  </body>
+</html>

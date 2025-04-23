@@ -1,3 +1,5 @@
+import knownHashes from "./vita-nova/js/main.js";
+
 (function ($) {
   var $window = $(window),
     $body = $("body"),
@@ -154,7 +156,8 @@
     if (!$body.hasClass("is-article-visible")) return;
 
     // Add state?
-    if (typeof addState != "undefined" && addState === true) history.pushState(null, null, "#");
+    if (typeof addState != "undefined" && addState === true)
+      history.pushState(null, null, "#");
 
     // Handle lock.
 
@@ -308,3 +311,62 @@
       $main._show(location.hash.substr(1), true);
     });
 })(jQuery);
+
+// (Un)secure gate
+async function sha256(text) {
+  const buffer = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", buffer);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.classList.remove("hidden");
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      toast.classList.add("hidden");
+    }, 300);
+  }, 3000);
+}
+
+function showModal(message) {
+  const modal = document.getElementById("modal");
+  const modalMessage = document.getElementById("modal-message");
+  modalMessage.innerText = message;
+  modal.classList.add("active");
+}
+
+function hideModal() {
+  const modal = document.getElementById("modal");
+  modal.classList.remove("active");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("gate-form");
+  const input = document.getElementById("access-name");
+  const closeBtn = document.getElementById("close-modal");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = input.value.trim();
+    const hash = await sha256(username);
+
+    if (knownHashes.includes(hash)) {
+      showToast(`Welcome, ${username}`);
+      setTimeout(() => {
+        const encodedName = encodeURIComponent(username);
+        window.location.href = `vita-nova/index.html?name=${encodedName}`;
+      }, 2000);
+    } else {
+      showModal("Access Denied.");
+    }
+  });
+
+  closeBtn.addEventListener("click", hideModal);
+});

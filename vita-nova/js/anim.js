@@ -4,17 +4,6 @@ AOS.init({
   once: true,
 });
 
-// Start with the overlay fading out
-anime({
-  targets: ".overlay",
-  opacity: [1, 0],
-  duration: 1500,
-  easing: "easeInOutQuad",
-  complete: function (anim) {
-    document.querySelector(".overlay").style.display = "none";
-  },
-});
-
 // Simultaneously animate the hero in
 anime
   .timeline({ easing: "easeOutExpo", delay: 300 })
