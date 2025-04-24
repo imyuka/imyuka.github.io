@@ -115,12 +115,6 @@ html {
   }
 }
 
-@media screen and (max-width: 360px) {
-  html {
-    font-size: 10pt;
-  }
-}
-
 body,
 input,
 select,
@@ -1106,10 +1100,7 @@ body.is-preload #bg:before {
     transform 0.325s ease-in-out,
     filter 0.325s ease-in-out,
     opacity 0.325s ease-in-out;
-  background-image: radial-gradient(
-    rgba(0, 0, 0, 0.25) 25%,
-    rgba(0, 0, 0, 0) 55%
-  );
+  background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
   max-width: 100%;
   text-align: center;
 }

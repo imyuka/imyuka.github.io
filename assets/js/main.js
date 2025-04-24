@@ -1,4 +1,4 @@
-import knownHashes from "./vita-nova/js/main.js";
+import knownHashes from "../../vita-nova/js/main.js";
 
 (function ($) {
   var $window = $(window),
@@ -156,8 +156,7 @@ import knownHashes from "./vita-nova/js/main.js";
     if (!$body.hasClass("is-article-visible")) return;
 
     // Add state?
-    if (typeof addState != "undefined" && addState === true)
-      history.pushState(null, null, "#");
+    if (typeof addState != "undefined" && addState === true) history.pushState(null, null, "#");
 
     // Handle lock.
 
