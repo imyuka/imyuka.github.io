@@ -353,26 +353,43 @@ function hideModal() {
   modal.classList.remove("active");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("gate-form");
-  const input = document.getElementById("access-name");
-  const closeBtn = document.getElementById("close-modal");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const username = input.value.trim();
-    const hash = await sha256(username.toLowerCase());
-
-    if (knownHashes.includes(hash)) {
-      showToast("Welcome, ${username}");
-      setTimeout(() => {
-        const encodedName = encodeURIComponent(username);
-        window.location.href = "vita-nova/index.html?h=${encodedName}";
-      }, 2000);
-    } else {
-      showModal("Access Denied.");
-    }
-  });
-
-  closeBtn.addEventListener("click", hideModal);
+document.getElementById("gate-form").addEventListener("sumbit", function (e) {
+  e.preventDefault();
+  const name = document.getElementById("access-name").value.trim();
+  const hash = await sha256(name);
+  if (knownHashes.includes(hash)) {
+    showToast("Welcome, ${name}")
+    setTimeout(() => {
+      const hHash = "8aca4f36774f82a67c507cb9c96679482e2cc767f2d38502269557a566b092fb"
+      const encodedName = encodeURIComponent(name);
+      window.location.href = "vita-nova/${hHash}.html?h=${encodedName}";
+    }, 2000);
+  } else {
+    showModal("Access Denied.");
+  }
 });
+
+//document.addEventListener("DOMContentLoaded", () => {
+//  const form = document.getElementById("gate-form");
+//  const closeBtn = document.getElementById("close-modal");
+//
+//  form.addEventListener("submit", async (e) => {
+//    e.preventDefault();
+//    const input = document.getElementById("access-name");
+//    const username = input.value.trim();
+//    const hash = await sha256(username.toLowerCase());
+//
+//    if (knownHashes.includes(hash)) {
+//      showToast("Welcome, ${username}");
+//      setTimeout(() => {
+//        const hHash = "8aca4f36774f82a67c507cb9c96679482e2cc767f2d38502269557a566b092fb"
+//        const encodedName = encodeURIComponent(username);
+//        window.location.href = "vita-nova/${hHash}.html?h=${encodedName}";
+//      }, 2000);
+//    } else {
+//      showModal("Access Denied.");
+//    }
+//  });
+//
+//  closeBtn.addEventListener("click", hideModal);
+//});
