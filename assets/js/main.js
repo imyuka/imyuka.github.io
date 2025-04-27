@@ -361,13 +361,13 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const username = input.value.trim();
-    const hash = await sha256(username);
+    const hash = await sha256(username.toLowerCase());
 
     if (knownHashes.includes(hash)) {
-      showToast(`Welcome, ${username}`);
+      showToast("Welcome, ${username}");
       setTimeout(() => {
         const encodedName = encodeURIComponent(username);
-        window.location.href = `vita-nova/index.html?name=${encodedName}`;
+        window.location.href = "vita-nova/index.html?h=${encodedName}";
       }, 2000);
     } else {
       showModal("Access Denied.");

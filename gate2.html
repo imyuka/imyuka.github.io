@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cyber Gate Access</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-dark text-white d-flex flex-column justify-content-center align-items-center vh-100"
+  >
+    <h1 class="mb-4">Gate Access Terminal</h1>
+
+    <div class="input-group mb-3 w-50">
+      <input type="text" id="nameInput" class="form-control" placeholder="Enter your name..." />
+      <button class="btn btn-primary" id="accessBtn" type="button">Request Access</button>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <!-- Access Denied Toast -->
+      <div
+        id="dangerToast"
+        class="toast align-items-center text-bg-danger border-0 mb-2"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">Access Denied.</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+
+      <!-- Welcome Toast -->
+      <div
+        id="welcomeToast"
+        class="toast align-items-center text-bg-success border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="welcomeMessage">Welcome, Agent.</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.getElementById("accessBtn").addEventListener("click", function () {
+        const allowedNames = ["Alice", "Bob", "Charlie", "Leo", "Peter", "Commander"];
+        const nameInput = document.getElementById("nameInput").value.trim();
+
+        const dangerToastElement = document.getElementById("dangerToast");
+        const welcomeToastElement = document.getElementById("welcomeToast");
+        const welcomeMessage = document.getElementById("welcomeMessage");
+
+        const dangerToast = new bootstrap.Toast(dangerToastElement);
+        const welcomeToast = new bootstrap.Toast(welcomeToastElement, { delay: 3000 });
+
+        if (allowedNames.map(name => name.toLowerCase()).includes(nameInput.toLowerCase())) {
+          welcomeMessage.innerText = "Welcome, ${nameInput}";
+          welcomeToast.show();
+          setTimeout(() => {
+            window.location.href = "vita-nova/index.html?h=Riru";
+          }, 3000);
+        } else {
+          dangerToast.show();
+        }
+      });
+    </script>
+  </body>
+</html>

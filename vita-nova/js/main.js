@@ -1,5 +1,5 @@
 const params = new URLSearchParams(window.location.search);
-const name = params.get("name");
+const name = params.get("h");
 
 if (name) {
   document.getElementById("hero-name").textContent = decodeURIComponent(name);
