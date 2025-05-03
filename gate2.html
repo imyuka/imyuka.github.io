@@ -73,7 +73,7 @@
         const dangerToast = new bootstrap.Toast(dangerToastElement);
         const welcomeToast = new bootstrap.Toast(welcomeToastElement, { delay: 3000 });
 
-        if (allowedNames.map(name => name.toLowerCase()).includes(nameInput.toLowerCase())) {
+        if (allowedNames.map((name) => name.toLowerCase()).includes(nameInput.toLowerCase())) {
           welcomeMessage.innerText = "Welcome, ${nameInput}";
           welcomeToast.show();
           setTimeout(() => {

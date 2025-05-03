@@ -6,4 +6,3 @@ if (name) {
 } else {
   document.getElementById("hero-name").textContent = "Stranger";
 }
-

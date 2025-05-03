@@ -351,12 +351,12 @@ function hideModal() {
   modal.classList.remove("active");
 }
 
-document.getElementById("gate-form").addEventListener("sumbit", function (event) {
+document.getElementById("gate-form").addEventListener("submit", async function (event) {
   event.preventDefault();
   const name = document.getElementById("access-name").value.trim();
   const hash = await sha256(name.toLowerCase());
   if (knownHashes.includes(hash)) {
-    showToast("Welcome, ${name}!")
+    showToast("Welcome, ${name}!");
     setTimeout(() => {
       const encodedName = encodeURIComponent(name);
       window.location.href = "vita-nova/s-jlnun-ec-cekntnk.html?h=${encodedName}";
